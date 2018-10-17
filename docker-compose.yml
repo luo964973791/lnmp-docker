@@ -1,0 +1,115 @@
+version: '3.4'
+services:
+    nginx:
+        build: ./nginx
+        container_name : nginx
+        depends_on:
+            - php
+        ports:
+            - 80:80/tcp
+            - 443:443/tcp
+        networks:
+            lnmpr:
+                aliases:
+                    - nginx
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+    php:
+        build: ./php
+        container_name : php
+        ports:
+            - 9000:9000/tcp
+        networks:
+            lnmpr:
+                aliases:
+                    - php
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+    redis:
+        build: ./redis
+        container_name : redis
+        ports:
+            - 6379:6379/tcp
+        networks:
+            lnmpr:
+                aliases:
+                    - redis
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+    memcached :
+        build: ./memcached
+        ports :
+            - "11211:11211"
+        container_name : memcached
+        restart : always
+        networks:
+            lnmpr:
+                aliases:
+                    - memcached
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+        command:
+            ["memcached","-m 64"]
+    mysql:
+        build: ./mysql
+        container_name : mysql
+        ports:
+            - 3306:3306/tcp
+        networks:
+            lnmpr:
+                aliases:
+                    - mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=000000
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+    phpmyadmin:
+        build: ./phpmyadmin
+        container_name : phpmyadmin
+        ports:
+            - 3308:80/tcp
+        links:
+            - mysql:db
+        networks:
+            lnmpr:
+                aliases:
+                    - phpmyadmin
+        volumes:
+            - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
+        logging:
+            driver: json-file
+            options:
+                max-file: '3'
+                max-size: 100m
+        restart: always
+networks:
+    lnmpr:
+        external: true
