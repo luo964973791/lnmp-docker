@@ -15,4 +15,6 @@ RUN apk update \
     --with-zlib-dir=/usr \
     && NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
     && docker-php-ext-install -j${NPROC} gd zip \
+    && docker-php-ext-enable gd \
+    && docker-php-ext-enable zip \
     && apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev
