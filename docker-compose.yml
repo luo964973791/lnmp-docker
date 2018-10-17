@@ -35,6 +35,7 @@ services:
                 aliases:
                     - php
         volumes:
+            - ./app:/var/www/html
             - ./php/php.ini-production:/usr/local/etc/php/php.ini-production
             - ./php/php.ini-development:/usr/local/etc/php/php.ini-development
             - ./php/conf.d:/usr/local/etc/php/conf.d
