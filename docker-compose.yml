@@ -37,7 +37,7 @@ services:
         volumes:
             - ./php/php.ini-production:/usr/local/etc/php/php.ini-production
             - ./php/php.ini-development:/usr/local/etc/php/php.ini-development
-            - ./php/conf/docker-php-ext-sodium.ini:etc/php/docker-php-ext-sodium.ini
+            - ./php/conf.d:/usr/local/etc/php/conf.d
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
         logging:
             driver: json-file
