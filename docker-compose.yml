@@ -35,6 +35,9 @@ services:
                 aliases:
                     - php
         volumes:
+            - ./php/php.ini-production:/usr/local/etc/php/php.ini-production
+            - ./php/php.ini-development:/usr/local/etc/php/php.ini-development
+            - ./php/conf/docker-php-ext-sodium.ini:etc/php/docker-php-ext-sodium.ini
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
         logging:
             driver: json-file
@@ -52,6 +55,7 @@ services:
                 aliases:
                     - redis
         volumes:
+            - ./redis/data:/data
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
         logging:
             driver: json-file
@@ -89,6 +93,7 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=000000
         volumes:
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
             - /usr/share/zoneinfo/Asia/Shanghai:/etc/localtime:ro
         logging:
             driver: json-file
