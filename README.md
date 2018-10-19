@@ -29,4 +29,9 @@ location ~ .php$ {</br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include fastcgi_params;</br>
 }</br>
-##################################################
+##################################################</br>
+
+docker清理缓存</br>
+docker container prune -f</br>
+docker images prune</br>
+docker volume prune -f</br>
