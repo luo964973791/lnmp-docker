@@ -6,7 +6,7 @@ php   挂载为 ./app:/var/www/html<br/>
 4.例如1<br/>
 -----------------------------------------------<br/>
 location / {<br/>
-	<br><br><br><br>root   /usr/share/nginx/html; #注意路径<br/>
+	root   /usr/share/nginx/html; #注意路径<br/>
 	index  index.html index.htm index.php;<br/>
 }<br/>
 location ~ \.php$ {<br/>
