@@ -1,4 +1,4 @@
-1. docker network create lnmpr
+1. docker network create lnmpr <br /> 
 2.docker-compose up --build -d
 3.#nginx/conf.d/default.conf 设置成php容器的目录，否则无法解析php
 本docker-compose nginx 挂载为 ./app:/usr/share/nginx/html
